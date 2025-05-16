@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="gu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gujarat News Portal</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Swiper CSS and Google Fonts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      .video-section {
+        background: linear-gradient(135deg, #8e2436 0%, #6d1830 100%);
+        border-radius: 20px;
+        max-width: 1400px;
+        margin: 40px auto;
+        padding: 40px 30px 30px 30px;
+        color: #fff;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+        font-family: 'Montserrat', sans-serif;
+      }
+      .video-section h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      .video-section .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #fff2;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+      .video-section .tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 30px;
+      }
+      .video-section .tab {
+        background: #8e2436;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 18px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.2s;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .video-section .tab.active, .video-section .tab:hover {
+        background: #fff;
+        color: #8e2436;
+      }
+      .swiper {
+        padding-bottom: 40px;
+      }
+      .swiper-slide {
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        color: #222;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        max-width: 380px;
+        min-width: 260px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .video-thumb {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16/9;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 10px;
+      }
+      .video-thumb iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+        aspect-ratio: 16/9;
+      }
+      .video-info {
+        padding: 16px;
+      }
+      .video-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        min-height: 48px;
+      }
+      .video-meta {
+        font-size: 0.95rem;
+        color: #8e2436;
+        font-weight: 500;
+      }
+      @media (max-width: 900px) {
+        .video-section {
+          padding: 20px 5px 20px 5px;
+        }
+        .swiper-slide { max-width: 95vw; }
+      }
+      @media (max-width: 600px) {
+        .video-section h2 {
+          font-size: 1.3rem;
+        }
+        .video-section {
+          padding: 10px 0 10px 0;
+        }
+        .swiper-slide { max-width: 99vw; }
+        .video-thumb { aspect-ratio: 16/9; }
+      }
+      /* Trending News Section - Modern Horizontal Card Style */
+      .trending-news {
+        margin: 40px 0;
+      }
+      .trending-news h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 24px;
+        color: #8e2436;
+        text-align: left;
+      }
+      .trending-grid {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .trending-card {
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 2px 12px rgba(142,36,54,0.08);
+        display: flex;
+        align-items: center;
+        min-width: 320px;
+        max-width: 420px;
+        width: 100%;
+        padding: 0;
+        overflow: hidden;
+        position: relative;
+        transition: transform 0.2s, box-shadow 0.2s;
+        border-left: 8px solid #8e2436;
+      }
+      .trending-card:hover {
+        transform: translateY(-6px) scale(1.03);
+        box-shadow: 0 8px 24px rgba(142,36,54,0.15);
+      }
+      .trending-number {
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: #8e2436;
+        background: #fff0f3;
+        padding: 0 18px;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        border-right: 2px solid #f3c2c7;
+      }
+      .trending-card a {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        text-decoration: none;
+        color: #222;
+        width: 100%;
+        padding: 18px 0 18px 0;
+      }
+      .trending-card img {
+        width: 110px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 8px;
+        flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(142,36,54,0.07);
+      }
+      .trending-card h3 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin: 0 0 8px 0;
+        color: #8e2436;
+      }
+      .trending-card p {
+        font-size: 0.98rem;
+        color: #555;
+        margin: 0;
+      }
+      @media (max-width: 900px) {
+        .trending-grid {
+          flex-direction: column;
+          gap: 18px;
+          align-items: center;
+        }
+        .trending-card {
+          min-width: 0;
+          max-width: 98vw;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <a href="index.html" style="color: white; text-decoration: none">
+            <h1>ગુજરાત સમાચાર</h1>
+          </a>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+          <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-links" id="navLinks">
+          <a href="index.html" class="active">હોમ</a>
+          <a href="state.html">રાજ્ય</a>
+          <a href="national.html">દેશ</a>
+          <a href="world.html">વિશ્વ</a>
+          <a href="business.html">વ્યાપાર</a>
+          <a href="sports.html">સ્પોર્ટ્સ</a>
+          <a href="entertainment.html">મનોરંજન</a>
+          <a href="education.html">શિક્ષણ</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Combined Navigation -->
+    <nav class="secondary-nav">
+      <div class="nav-links">
+        <a href="local.html">સ્થાનિક</a>
+        <a href="crime.html">અપરાધ</a>
+        <a href="politics.html">રાજકારણ</a>
+        <a href="health.html">આરોગ્ય</a>
+        <a href="education.html">શિક્ષણ</a>
+        <a href="weather.html">હવામાન</a>
+        <a href="traffic.html">ટ્રાફિક</a>
+        <a href="market.html">બજાર</a>
+        <a href="jobs.html">રોજગાર</a>
+      </div>
+    </nav>
+
+    <!-- Breaking News Ticker -->
+    <div class="breaking-news">
+      <span>બ્રેકિંગ ન્યૂઝ:</span>
+      <div class="ticker-wrap">
+        <div class="ticker">
+          <div class="ticker-item">
+            <a href="news1.html"
+              >અમદાવાદમાં તાપમાન 44 ડિગ્રી સુધી જશે, હવામાન વિભાગે આગાહી કરી</a
+            >
+          </div>
+          <div class="ticker-item">
+            <a href="news2.html"
+              >ગુજરાતમાં નવી સરકારી યોજના: 50,000 યુવાનોને મળશે રોજગાર</a
+            >
+          </div>
+          <div class="ticker-item">
+            <a href="news3.html"
+              >વિશ્વ કપમાં ભારતની જીત: હાર્દિક પાંડ્યાનો શતક</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Weather Widget -->
+    <div class="weather-widget">
+      <div class="weather-container">
+        <div class="weather-item">
+          <i class="fas fa-sun"></i>
+          <span>અમદાવાદ</span>
+          <span>44°C</span>
+        </div>
+        <div class="weather-item">
+          <i class="fas fa-cloud-sun"></i>
+          <span>સુરત</span>
+          <span>38°C</span>
+        </div>
+        <div class="weather-item">
+          <i class="fas fa-cloud"></i>
+          <span>રાજકોટ</span>
+          <span>40°C</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Slider Section -->
+    <div class="video-section">
+      <div class="section-header">
+        <h2>બિયો-ડ વિડિઓઝ</h2>
+        <button class="tab" style="background:#fff;color:#8e2436;">વધુ જુઓ &nbsp; &rarr;</button>
+      </div>
+      <div class="tabs">
+        <button class="tab active">એક વાત કહું</button>
+        <button class="tab">શું પ્લાન</button>
+        <button class="tab">VTV પોડકાસ્ટ</button>
+        <button class="tab">કપિલ ટોક</button>
+        <button class="tab">અજવ ગજવ</button>
+        <button class="tab">Way To વિદેશ</button>
+        <button class="tab">Dharma Yatra</button>
+        <button class="tab">મહાસંઘ</button>
+        <button class="tab">ટેક મસાલા</button>
+      </div>
+      <!-- Swiper -->
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <!-- Slide 1 -->
+          <div class="swiper-slide">
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/40HANheAg8I" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+              <div class="video-title">Video Title</div>
+              <div class="video-meta">| બિયો-ડ વિડિઓઝ</div>
+            </div>
+          </div>
+          <!-- Slide 2 -->
+          <div class="swiper-slide">
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/UP-8xm-e7c8?si=fB0SGkqNdOwBUdNC" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+              <div class="video-title">કપિલ ટોક / Jagdish Mehta પાસેથી સમજો Jayrajsinh Jadeja અને Nikhil Donga વચ્ચેની ટક્કર...</div>
+              <div class="video-meta">| બિયો-ડ વિડિઓઝ</div>
+            </div>
+          </div>
+          <!-- Slide 3 -->
+          <div class="swiper-slide">
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/tQhTJZSGxi8?si=ZFXkIMnzG6JxYba2" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+              <div class="video-title">મોટી ધમાકેદારી / ભારતની પાકિસ્તાનને મોટી ચેતવણી...</div>
+              <div class="video-meta">| બિયો-ડ વિડિઓઝ</div>
+            </div>
+          </div>
+          <!-- Slide 4 -->
+          <div class="swiper-slide">
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/sVkDD-_VnYE?si=ynRsISF34bMmlTbW" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+              <div class="video-title">Way To વિદેશ / શું બ્રિટનમાં નોકરી મળશે?</div>
+              <div class="video-meta">| બિયો-ડ વિડિઓઝ</div>
+            </div>
+          </div>
+          <!-- Add more slides as needed -->
+        </div>
+        <!-- If you want navigation buttons -->
+        <div class="swiper-button-next" style="color:#222;"></div>
+        <div class="swiper-button-prev" style="color:#222;"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Featured News Section -->
+      <section class="featured-news">
+        <div class="featured-main">
+          <a href="featured1.html">
+            <img
+              src="https://images.unsplash.com/photo-1592210454359-9043f067919b?w=1200&h=600&fit=crop"
+              alt="Weather News"
+            />
+            <h2>અમદાવાદમાં તાપમાન 44 ડિગ્રી સુધી જશે</h2>
+            <p>
+              મે મહિનામાં તાપમાન વધીને 44 ડિગ્રી સુધી જશે. હવામાન વિભાગે આવી
+              આગાહી કરી છે. લોકોને ગરમીમાંથી બચવા માટે સાવધાની રાખવાની સલાહ
+              આપવામાં આવી છે.
+            </p>
+          </a>
+        </div>
+        <div class="featured-side">
+          <div class="side-news">
+            <a href="news4.html">
+              <img
+                src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&h=400&fit=crop"
+                alt="Government Scheme"
+              />
+              <h3>ગુજરાતમાં નવી સરકારી યોજના</h3>
+              <p>50,000 યુવાનોને મળશે રોજગાર, જાણો કઈ યોજના</p>
+            </a>
+          </div>
+          <div class="side-news">
+            <a href="news5.html">
+              <img
+                src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=600&h=400&fit=crop"
+                alt="Cricket News"
+              />
+              <h3>વિશ્વ કપમાં ભારતની જીત</h3>
+              <p>હાર્દિક પાંડ્યાનો શતક, ટીમ ઇન્ડિયા જીતી</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trending News Section -->
+      <section class="trending-news">
+        <h2>ટ્રેન્ડિંગ ન્યૂઝ</h2>
+        <div class="trending-grid">
+          <div class="trending-card">
+            <span class="trending-number">1</span>
+            <a href="trending1.html">
+              <img
+                src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&h=400&fit=crop"
+                alt="Metro News"
+              />
+              <div>
+                <h3>અમદાવાદમાં મેટ્રોનો નવો રૂટ</h3>
+                <p>2.5K વ્યૂઝ</p>
+              </div>
+            </a>
+          </div>
+          <div class="trending-card">
+            <span class="trending-number">2</span>
+            <a href="trending2.html">
+              <img
+                src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=600&h=400&fit=crop"
+                alt="Movie News"
+              />
+              <div>
+                <h3>ગુજરાતી ફિલ્મ 'ચાલ મન'નો બોક્સ ઓફિસ રેકોર્ડ</h3>
+                <p>1.8K વ્યૂઝ</p>
+              </div>
+            </a>
+          </div>
+          <div class="trending-card">
+            <span class="trending-number">3</span>
+            <a href="trending3.html">
+              <img
+                src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop"
+                alt="Technology News"
+              />
+              <div>
+                <h3>સુરતમાં નવી ટેકનોલોજી પાર્ક</h3>
+                <p>1.5K વ્યૂઝ</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+      <script>
+      function toggleMenu() {
+        const nav = document.getElementById("navLinks");
+        nav.classList.toggle("active");
+      }
+    </script>
+    
+
+      <!-- Category Sections -->
+      <div class="category-sections">
+        <!-- Business News -->
+        <section class="category-news">
+          <div class="category-header">
+            <h2>વ્યાપાર</h2>
+            <a href="business.html" class="view-all">બધા જુઓ</a>
+          </div>
+          <div class="news-grid">
+            <div class="news-card">
+              <a href="business1.html">
+                <img
+                  src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=500&fit=crop"
+                  alt="Stock Market"
+                />
+                <h3>સ્ટોક માર્કેટમાં તેજી</h3>
+                <p>સેન્સેક્સ 75,000 પોઇન્ટ પાર, નિવેશકો માટે સુવર્ણ તક</p>
+              </a>
+            </div>
+            <div class="news-card">
+              <a href="business2.html">
+                <img
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=500&fit=crop"
+                  alt="Business News"
+                />
+                <h3>ગુજરાતમાં નવી શેર બજાર યોજના</h3>
+                <p>નિવેશકો માટે સુવર્ણ તક, જાણો કઈ કંપનીઓ લિસ્ટ થશે</p>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sports News -->
+        <section class="category-news">
+          <div class="category-header">
+            <h2>સ્પોર્ટ્સ</h2>
+            <a href="sports.html" class="view-all">બધા જુઓ</a>
+          </div>
+          <div class="news-grid">
+            <div class="news-card">
+              <a href="sports1.html">
+                <img
+                  src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&h=500&fit=crop"
+                  alt="IPL News"
+                />
+                <h3>IPL 2024: ગુજરાત ટાઇટન્સની જીત</h3>
+                <p>હાર્દિક પાંડ્યાનો શતક, ટીમ ટોપ પર</p>
+              </a>
+            </div>
+            <div class="news-card">
+              <a href="sports2.html">
+                <img
+                  src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=500&fit=crop"
+                  alt="Kabaddi News"
+                />
+                <h3>કબડ્ડી વર્લ્ડ કપ</h3>
+                <p>ભારતની ટીમ સેમિફાઇનલમાં, જાણો ક્યારે છે મેચ</p>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Entertainment News -->
+        <section class="category-news">
+          <div class="category-header">
+            <h2>મનોરંજન</h2>
+            <a href="entertainment.html" class="view-all">બધા જુઓ</a>
+          </div>
+          <div class="news-grid">
+            <div class="news-card">
+              <a href="entertainment1.html">
+                <img
+                  src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800&h=500&fit=crop"
+                  alt="Movie News"
+                />
+                <h3>ગુજરાતી ફિલ્મ 'ચાલ મન'નો બોક્સ ઓફિસ રેકોર્ડ</h3>
+                <p>પ્રથમ સપ્તાહમાં 10 કરોડની કમાણી</p>
+              </a>
+            </div>
+            <div class="news-card">
+              <a href="entertainment2.html">
+                <img
+                  src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&h=500&fit=crop"
+                  alt="Music News"
+                />
+                <h3>ગુજરાતી ગીતોનો નવો આલ્બમ</h3>
+                <p>જાણો કયા ગાયકોનો સમાવેશ થયો છે</p>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Latest News Grid -->
+      <section class="latest-news">
+        <h2>તાજા સમાચાર</h2>
+        <div class="news-grid">
+          <div class="news-card">
+            <a href="latest1.html">
+              <img
+                src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=500&fit=crop"
+                alt="Education News"
+              />
+              <h3>શિક્ષણ ક્ષેત્રે નવી સુવિધાઓ</h3>
+              <p>
+                સરકારે શિક્ષણ ક્ષેત્રે નવી સુવિધાઓ જાહેર કરી છે, જાણો કઈ યોજના
+              </p>
+            </a>
+          </div>
+          <div class="news-card">
+            <a href="latest2.html">
+              <img
+                src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=500&fit=crop"
+                alt="Technology News"
+              />
+              <h3>અમદાવાદમાં નવી ટેકનોલોજી પાર્ક</h3>
+              <p>ટેક કંપનીઓ માટે નવી સુવિધાઓ, જાણો કઈ કંપનીઓ આવશે</p>
+            </a>
+          </div>
+          <div class="news-card">
+            <a href="latest3.html">
+              <img
+                src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=500&fit=crop"
+                alt="Development News"
+              />
+              <h3>ગુજરાતમાં વિકાસની નવી યોજના</h3>
+              <p>સરકારે વિકાસની નવી યોજના જાહેર કરી છે, જાણો કઈ સુવિધાઓ</p>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>અમારા વિશે</h3>
+          <p>ગુજરાતના સૌથી વિશ્વસનીય સમાચાર પોર્ટલ</p>
+          <p>અમે તમને સૌથી વિશ્વસનીય અને તાજા સમાચાર પૂરા પાડીએ છીએ.</p>
+        </div>
+        <div class="footer-section">
+          <h3>સંપર્ક કરો</h3>
+          <p><i class="fas fa-envelope"></i> ઈમેલ: info@gujaratnews.com</p>
+          <p><i class="fas fa-phone"></i> ફોન: +91 1234567890</p>
+          <p><i class="fas fa-map-marker-alt"></i> સરનામું: અમદાવાદ, ગુજરાત</p>
+        </div>
+        <div class="footer-section">
+          <h3>ફોલો કરો</h3>
+          <div class="social-links">
+            <a href="https://facebook.com" target="_blank"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a href="https://twitter.com" target="_blank"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="https://instagram.com" target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://youtube.com" target="_blank"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </div>
+          <div class="newsletter">
+            <h4>ન્યૂઝલેટર સબ્સ્ક્રાઇબ કરો</h4>
+            <form>
+              <input type="email" placeholder="તમારો ઈમેલ દાખલ કરો" />
+              <button type="submit">સબ્સ્ક્રાઇબ</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 ગુજરાત સમાચાર. બધા અધિકારો સુરક્ષિત છે.</p>
+      </div>
+    </footer>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      var swiper = new Swiper('.swiper', {
+        slidesPerView: 1,
+        spaceBetween: 24,
+        loop: true,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        breakpoints: {
+          600: {
+            slidesPerView: 2,
+          },
+          900: {
+            slidesPerView: 3,
+          },
+          1200: {
+            slidesPerView: 4,
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
