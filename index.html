@@ -12,6 +12,7 @@
     <!-- Swiper CSS and Google Fonts -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
       .video-section {
         background: linear-gradient(135deg, #8e2436 0%, #6d1830 100%);
@@ -379,6 +380,92 @@
           grid-template-columns: 1fr;
         }
       }
+
+      /* Responsive Improvements */
+      @media (max-width: 768px) {
+        .video-section {
+          padding: 15px;
+          margin: 20px 10px;
+        }
+
+        .video-section h2 {
+          font-size: 1.5rem;
+        }
+
+        .video-section .tabs {
+          gap: 8px;
+          overflow-x: auto;
+          padding-bottom: 10px;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .video-section .tab {
+          padding: 8px 15px;
+          font-size: 0.9rem;
+          white-space: nowrap;
+        }
+
+        .trending-news h2,
+        .special-coverage h2,
+        .category-news h2,
+        .latest-news h2 {
+          font-size: 1.5rem;
+          margin-bottom: 15px;
+        }
+
+        .coverage-card,
+        .news-card,
+        .trending-card {
+          margin-bottom: 15px;
+        }
+
+        .coverage-content h3,
+        .news-card h3,
+        .trending-card h3 {
+          font-size: 1.1rem;
+        }
+
+        .coverage-content p,
+        .news-card p,
+        .trending-card p {
+          font-size: 0.9rem;
+        }
+
+        .category-header {
+          padding: 0 10px;
+        }
+
+        .view-all {
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .video-section {
+          padding: 10px;
+          margin: 15px 5px;
+        }
+
+        .video-section h2 {
+          font-size: 1.3rem;
+        }
+
+        .video-section .tab {
+          padding: 6px 12px;
+          font-size: 0.8rem;
+        }
+
+        .coverage-grid,
+        .news-grid,
+        .trending-grid {
+          gap: 15px;
+        }
+
+        .coverage-image,
+        .news-card img {
+          height: 180px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -467,7 +554,7 @@
     </div>
 
     <!-- Video Slider Section -->
-    <div class="video-section">
+    <div class="video-section" data-aos="fade-up">
       <div class="section-header">
         <h2>બિયો-ડ વિડિઓઝ</h2>
         <button class="tab" style="background:#fff;color:#8e2436;">વધુ જુઓ &nbsp; &rarr;</button>
@@ -578,7 +665,7 @@
       </section>
 
       <!-- Trending News Section -->
-      <section class="trending-news">
+      <section class="trending-news" data-aos="fade-up">
         <h2>ટ્રેન્ડિંગ ન્યૂઝ</h2>
         <div class="trending-grid">
           <div class="trending-card">
@@ -633,13 +720,13 @@
       <!-- Category Sections -->
       <div class="category-sections">
         <!-- Business News -->
-        <section class="category-news">
-          <div class="category-header">
+        <section class="category-news" data-aos="fade-up">
+          <div class="category-header" data-aos="fade-right">
             <h2>વ્યાપાર</h2>
             <a href="business.html" class="view-all">બધા જુઓ</a>
           </div>
           <div class="news-grid">
-            <div class="news-card">
+            <div class="news-card" data-aos="fade-up" data-aos-delay="100">
               <a href="business1.html">
                 <img
                   src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=500&fit=crop"
@@ -649,7 +736,7 @@
                 <p>સેન્સેક્સ 75,000 પોઇન્ટ પાર, નિવેશકો માટે સુવર્ણ તક</p>
               </a>
             </div>
-            <div class="news-card">
+            <div class="news-card" data-aos="fade-up" data-aos-delay="200">
               <a href="business2.html">
                 <img
                   src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=500&fit=crop"
@@ -663,13 +750,13 @@
         </section>
 
         <!-- Sports News -->
-        <section class="category-news">
-          <div class="category-header">
+        <section class="category-news" data-aos="fade-up">
+          <div class="category-header" data-aos="fade-right">
             <h2>સ્પોર્ટ્સ</h2>
             <a href="sports.html" class="view-all">બધા જુઓ</a>
           </div>
           <div class="news-grid">
-            <div class="news-card">
+            <div class="news-card" data-aos="fade-up" data-aos-delay="100">
               <a href="sports1.html">
                 <img
                   src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&h=500&fit=crop"
@@ -679,7 +766,7 @@
                 <p>હાર્દિક પાંડ્યાનો શતક, ટીમ ટોપ પર</p>
               </a>
             </div>
-            <div class="news-card">
+            <div class="news-card" data-aos="fade-up" data-aos-delay="200">
               <a href="sports2.html">
                 <img
                   src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=500&fit=crop"
@@ -693,13 +780,13 @@
         </section>
 
         <!-- Entertainment News -->
-        <section class="category-news">
-          <div class="category-header">
+        <section class="category-news" data-aos="fade-up">
+          <div class="category-header" data-aos="fade-right">
             <h2>મનોરંજન</h2>
             <a href="entertainment.html" class="view-all">બધા જુઓ</a>
           </div>
           <div class="news-grid">
-            <div class="news-card">
+            <div class="news-card" data-aos="fade-up" data-aos-delay="100">
               <a href="entertainment1.html">
                 <img
                   src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800&h=500&fit=crop"
@@ -709,7 +796,7 @@
                 <p>પ્રથમ સપ્તાહમાં 10 કરોડની કમાણી</p>
               </a>
             </div>
-            <div class="news-card">
+            <div class="news-card" data-aos="fade-up" data-aos-delay="200">
               <a href="entertainment2.html">
                 <img
                   src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&h=500&fit=crop"
@@ -724,10 +811,10 @@
       </div>
 
       <!-- Add this section before the Latest News section -->
-      <section class="special-coverage">
-        <h2>વિશેષ કવરેજ</h2>
+      <section class="special-coverage" data-aos="fade-up">
+        <h2 data-aos="fade-right">વિશેષ કવરેજ</h2>
         <div class="coverage-grid">
-          <div class="coverage-card">
+          <div class="coverage-card" data-aos="fade-up" data-aos-delay="100">
             <div class="coverage-image">
               <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop" alt="Technology News">
               <span class="coverage-tag">ટેકનોલોજી</span>
@@ -742,7 +829,7 @@
             </div>
           </div>
 
-          <div class="coverage-card">
+          <div class="coverage-card" data-aos="fade-up" data-aos-delay="200">
             <div class="coverage-image">
               <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=500&fit=crop" alt="Education News">
               <span class="coverage-tag">શિક્ષણ</span>
@@ -757,7 +844,7 @@
             </div>
           </div>
 
-          <div class="coverage-card">
+          <div class="coverage-card" data-aos="fade-up" data-aos-delay="300">
             <div class="coverage-image">
               <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop" alt="Development News">
               <span class="coverage-tag">વિકાસ</span>
@@ -775,10 +862,10 @@
       </section>
 
       <!-- Latest News Grid -->
-      <section class="latest-news">
-        <h2>તાજા સમાચાર</h2>
+      <section class="latest-news" data-aos="fade-up">
+        <h2 data-aos="fade-right">તાજા સમાચાર</h2>
         <div class="news-grid">
-          <div class="news-card">
+          <div class="news-card" data-aos="fade-up" data-aos-delay="100">
             <a href="latest1.html">
               <img
                 src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=500&fit=crop"
@@ -790,7 +877,7 @@
               </p>
             </a>
           </div>
-          <div class="news-card">
+          <div class="news-card" data-aos="fade-up" data-aos-delay="200">
             <a href="latest2.html">
               <img
                 src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=500&fit=crop"
@@ -800,7 +887,7 @@
               <p>ટેક કંપનીઓ માટે નવી સુવિધાઓ, જાણો કઈ કંપનીઓ આવશે</p>
             </a>
           </div>
-          <div class="news-card">
+          <div class="news-card" data-aos="fade-up" data-aos-delay="300">
             <a href="latest3.html">
               <img
                 src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=500&fit=crop"
@@ -884,6 +971,17 @@
             slidesPerView: 4,
           }
         }
+      });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        offset: 100,
+        once: true,
+        easing: 'ease-in-out',
+        mirror: false
       });
     </script>
   </body>
